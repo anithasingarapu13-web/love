@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070509">
+  <title>Naresh ♥ Our Beautiful Story</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Opening eye-blinking video -->
+ 
+<section class="eyes-intro" id="eyesIntro">
+  <video
+    id="eyesVideo"
+    autoplay
+    muted
+    playsinline
+    preload="auto"
+  >
+    <source
+      src="madam-eye-blink-mp4"
+      type="video/mp4"
+    >
+  </video>
+
+  <div class="eyes-shade"></div>
+
+  <div class="eyes-caption">
+    <span class="eyes-heart">♥</span>
+    <p>A MOMENT MADE OF LOVE</p>
+    <div class="eyes-progress">
+      <span id="eyesProgress"></span>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Intro music -->
+  <audio id="introMusic" src="./intro.mp3" preload="auto"></audio>
+
+  <!-- Main romantic website -->
+  <div id="website" class="hidden">
+
+    <header class="topbar">
+      <a class="brand" href="#home">Our <span>♥</span> Story</a>
+
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#memories">Memories</a>
+        <a href="#add-memory">Add Memory</a>
+        <a href="#letter">Love Note</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="floating-hearts" id="floatingHearts"></div>
+
+        <div class="hero-content">
+          <p class="eyebrow">A LITTLE WORLD, MADE FOR TWO</p>
+
+          <h1>
+            Every love story<br>
+            is beautiful, <span>ours is magic.</span>
+          </h1>
+
+          <p class="hero-copy">
+            A little place for the smiles, the journeys, the ordinary days,
+            and the unforgettable moments that make a life together.
+          </p>
+
+          <p class="couple-name">With love, for <span>Naresh ♥</span></p>
+
+          <p class="song-trigger" id="songTrigger"
+             role="button" tabindex="0">
+            ♡ Touch these words to hear our song ♡
+          </p>
+
+          <a class="primary-button" href="#memories">
+            Explore our memories <span>♡</span>
+          </a>
+        </div>
+
+        <div class="heart-scene">
+          <div class="heart-orbit"></div>
+          <div class="heart-orbit orbit-b"></div>
+          <div class="heart-3d">♥</div>
+          <p class="heart-caption">ALWAYS · AND FOREVER</p>
+        </div>
+
+        <div class="scroll-hint">SCROLL TO OUR STORY ↓</div>
+      </section>
+
+      <section class="section memories-section" id="memories">
+        <div class="section-heading">
+          <p class="eyebrow">LITTLE MOMENTS, BIG MEANING</p>
+          <h2>Our <span>Memory Gallery</span></h2>
+          <p>Every photo and video holds a story worth keeping.</p>
+        </div>
+
+        <div class="memory-toolbar">
+          <span id="memoryCount">0 memories saved</span>
+          <a class="secondary-button" href="#add-memory">＋ Add a memory</a>
+        </div>
+
+        <div class="memory-grid" id="memoryGrid"></div>
+
+        <p class="empty-message" id="emptyMessage">
+          Your gallery is waiting for its first beautiful memory. ♥
+        </p>
+      </section>
+
+      <section class="section add-section" id="add-memory">
+        <div class="section-heading">
+          <p class="eyebrow">SAVE TODAY, REMEMBER FOREVER</p>
+          <h2>Add a <span>Beautiful Moment</span></h2>
+          <p>Add multiple photos or videos for one memory.</p>
+        </div>
+
+        <form class="memory-form" id="memoryForm">
+          <label for="memoryTitle">Memory title</label>
+          <input id="memoryTitle" type="text" maxlength="100"
+                 placeholder="Our special day..." required>
+
+          <label for="memoryDate">Date of memory</label>
+          <input id="memoryDate" type="date" required>
+
+          <label for="memoryNote">A little note (optional)</label>
+          <textarea id="memoryNote" rows="4" maxlength="1500"
+                    placeholder="What made this moment unforgettable?"></textarea>
+
+          <label class="upload-area" for="memoryFiles">
+            <span class="upload-icon">＋</span>
+            <strong>Select photos and videos</strong>
+            <span>Choose multiple files from your device</span>
+            <input id="memoryFiles" type="file"
+                   accept="image/*,video/*" multiple required>
+          </label>
+
+          <p class="selected-files" id="selectedFiles">
+            No files selected yet.
+          </p>
+
+          <button class="primary-button form-button" type="submit">
+            Save to our gallery ♥
+          </button>
+
+          <p id="formStatus" role="status"></p>
+        </form>
+      </section>
+
+      <section class="love-letter" id="letter">
+        <span class="letter-heart">♥</span>
+        <p class="eyebrow">A NOTE FROM THE HEART</p>
+        <h2>To <span>Naresh</span></h2>
+
+        <p>
+          Some moments pass, but the feelings they leave behind stay with us.
+          May this little corner hold your happiest memories, one photo,
+          one song, and one beautiful day at a time.
+        </p>
+
+        <p class="signature">With love, always ♡</p>
+      </section>
+    </main>
+
+    <footer>MADE WITH <span>♥</span> FOR YOUR MOST BEAUTIFUL MEMORIES</footer>
+  </div>
+
+  <!-- Full-screen photo/video viewer -->
+  <dialog class="viewer" id="viewer">
+    <button class="close-viewer" id="closeViewer" type="button">×</button>
+    <div id="viewerContent"></div>
+    <p id="viewerCaption"></p>
+  </dialog>
+
+  
+<!-- Eye-blinking intro music -->
+<audio id="introMusic" src="intro.mp3" preload="auto"></audio>
+
+<!-- Inside romantic website music -->
+<audio id="backgroundMusic" src="romantic.mp3" loop preload="auto"></audio>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
