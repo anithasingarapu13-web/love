@@ -1,513 +1,198 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#09060c">
-<title>Naresh ♥ Our Beautiful Story</title>
-
-<style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:#0b0710;color:#fff0f7;font-family:Georgia,serif}
-.hidden{display:none!important}
-a{color:inherit;text-decoration:none}
-button,input,textarea{font:inherit}
-button,a,label{ -webkit-tap-highlight-color:transparent }
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 7%;background:#100b15;position:sticky;top:0;z-index:5}
-.brand{font-size:23px;font-weight:bold}
-.brand span,.topbar span,.section-heading span,h1 span,h2 span{color:#f39ac2}
-nav{display:flex;gap:18px;flex-wrap:wrap;font-family:Arial,sans-serif;font-size:13px}
-nav a:hover{color:#f39ac2}
-.hero{min-height:90vh;padding:70px 8%;display:grid;place-items:center;text-align:center;background:radial-gradient(ellipse at top,#51213f,#170d20 48%,#09060c)}
-.hero-content{max-width:760px}
-.eyebrow{color:#e8a0c1;letter-spacing:3px;font:11px Arial,sans-serif}
-h1{font-size:clamp(38px,7vw,76px);line-height:1.12;margin:24px 0}
-.hero-copy{max-width:600px;margin:0 auto 24px;line-height:1.8;color:#e0cfda}
-.couple-name{margin:25px 0}
-.song-trigger{cursor:pointer;color:#f5b6d3}
-.primary-button,.secondary-button{display:inline-block;border:0;border-radius:30px;padding:14px 23px;background:#ed8db9;color:#250d1b;cursor:pointer;font-weight:bold;margin-top:12px}
-.secondary-button{background:transparent;color:#ffc1dc;border:1px solid #d778a4}
-.section{padding:75px 7%;max-width:1200px;margin:auto}
-.section-heading{text-align:center;margin-bottom:35px}
-.section-heading h2,.love-letter h2{font-size:clamp(28px,5vw,44px);margin:15px 0}
-.section-heading p{color:#cbb9c8;line-height:1.6}
-.memory-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:25px}
-.memory-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
-.memory-card{background:#19111e;border:1px solid #392238;border-radius:17px;overflow:hidden}
-.memory-card img,.memory-card video{display:block;width:100%;height:240px;object-fit:cover;background:#100b15;cursor:pointer}
-.memory-info{padding:15px}
-.memory-info h3{margin:0 0 8px;overflow-wrap:anywhere}
-.memory-info p{color:#d5c1d0;line-height:1.5;overflow-wrap:anywhere}
-.memory-date{font:12px Arial,sans-serif;color:#e8a0c1!important}
-.memory-actions{display:flex;gap:8px;flex-wrap:wrap}
-.small-button{padding:8px 12px;border:1px solid #77445f;border-radius:20px;color:#ffd1e4;background:transparent;cursor:pointer}
-.empty-message{text-align:center;padding:30px;color:#cbb9c8}
-.add-section{background:#100b15;max-width:none;padding-left:max(7%,calc((100% - 1050px)/2));padding-right:max(7%,calc((100% - 1050px)/2))}
-.memory-form{max-width:650px;margin:auto;display:grid;gap:12px}
-.memory-form>label{margin-top:12px;color:#f2c5da}
-.memory-form input:not([type=file]),.memory-form textarea{width:100%;padding:13px;border-radius:10px;border:1px solid #5a354e;background:#1b1220;color:white}
-.memory-form input[type=date]{color-scheme:dark}
-.upload-area{display:grid;place-items:center;text-align:center;gap:12px;padding:28px 15px;border:2px dashed #bc6893;border-radius:16px;background:#1a101d}
-.upload-area .heart{font-size:35px;color:#f39ac2}
-.upload-area input{max-width:100%;color:#f4d8e5}
-.upload-preview{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
-.preview-item{min-width:0;overflow:hidden;border:1px solid #54334b;border-radius:12px;padding:7px}
-.preview-item img,.preview-item video{width:100%;height:125px;object-fit:cover;border-radius:8px}
-.preview-item p{font:11px Arial,sans-serif;overflow-wrap:anywhere}
-.form-button{width:100%}
-#formStatus{line-height:1.6;color:#f6bad5}
-.love-letter{text-align:center;padding:85px 8%;background:radial-gradient(ellipse at top,#35152b,#0b0710)}
-.love-letter>p:not(.eyebrow){max-width:650px;margin:20px auto;line-height:1.9;color:#ddcbd8}
-.letter-heart{font-size:40px;color:#f39ac2}
-.signature{color:#f39ac2;font-style:italic}
-footer{text-align:center;padding:25px 12px;font:10px Arial,sans-serif;letter-spacing:2px;color:#d8b6c9}
-footer span{color:#f39ac2}
-.eyes-intro{position:fixed;inset:0;background:#050307;z-index:20;display:grid;place-items:center;overflow:hidden}
-.eyes-intro video{width:100%;height:100%;object-fit:contain}
-.eyes-shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.65),transparent 50%)}
-.eyes-caption{position:absolute;bottom:10%;text-align:center;width:min(80%,360px);letter-spacing:3px;font:11px Arial,sans-serif}
-.eyes-heart{font-size:30px;color:#ff8fbe}
-.eyes-progress{height:3px;background:#593047;margin-top:18px;border-radius:5px;overflow:hidden}
-.eyes-progress span{display:block;height:100%;width:0;background:#ff9dc7}
-.viewer{width:min(94vw,1000px);max-height:92vh;border:1px solid #69415c;border-radius:15px;background:#100b15;color:white;padding:22px}
-.viewer::backdrop{background:rgba(0,0,0,.9)}
-.close-viewer{float:right;font-size:30px;background:none;border:0;color:white;cursor:pointer}
-#viewerContent{clear:both;text-align:center;padding-top:15px}
-#viewerContent img,#viewerContent video{max-width:100%;max-height:70vh;object-fit:contain}
-#viewerCaption{text-align:center;overflow-wrap:anywhere}
-@media(max-width:650px){
- .topbar{align-items:flex-start;flex-direction:column}
- nav{gap:12px}
- .hero{min-height:75vh;padding:55px 6%}
- .section{padding:55px 5%}
- .add-section{padding:55px 5%}
- .memory-card img,.memory-card video{height:210px}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070509">
+  <title>Naresh ♥ Our Beautiful Story</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- EYES INTRO: video plays for 10 seconds -->
-<section class="eyes-intro" id="eyesIntro">
-  <video id="eyesVideo" autoplay muted playsinline preload="auto">
-    <source src="./madam-eye-blink.mp4" type="video/mp4">
-  </video>
-  <div class="eyes-shade"></div>
-  <div class="eyes-caption">
-    <div class="eyes-heart">♥</div>
-    <p>A MOMENT MADE OF LOVE</p>
-    <div class="eyes-progress"><span id="eyesProgress"></span></div>
-  </div>
-</section>
+  <!-- Opening eye-blinking video -->
+  <section class="eyes-intro" id="eyesIntro">
+    <video id="eyesVideo" autoplay muted playsinline preload="auto">
+      <source src="./madam-eye-blink.mp4" type="video/mp4">
+    </video>
 
-<audio id="introMusic" src="./intro.mp3" preload="auto"></audio>
-<audio id="backgroundMusic" src="./romantic.mp3" loop preload="auto"></audio>
+    <div class="eyes-shade"></div>
 
-<div id="website" class="hidden">
-<header class="topbar">
-  <a class="brand" href="#home">Our <span>♥</span> Story</a>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#memories">Memories</a>
-    <a href="#add-memory">Add Memory</a>
-    <a href="#letter">Love Note</a>
-  </nav>
-</header>
-
-<main>
-<section class="hero" id="home">
-  <div class="hero-content">
-    <p class="eyebrow">A LITTLE WORLD, MADE FOR TWO</p>
-    <h1>Every love story<br>is beautiful, <span>ours is magic.</span></h1>
-    <p class="hero-copy">A little place for the smiles, the journeys, the ordinary days, and the unforgettable moments that make a life together.</p>
-    <p class="couple-name">With love, for <span>Naresh ♥</span></p>
-    <p class="song-trigger" id="songTrigger" role="button" tabindex="0">♡ Touch these words to hear our song ♡</p>
-    <a class="primary-button" href="#memories">Explore our memories ♡</a>
-  </div>
-</section>
-
-<section class="section" id="memories">
-  <div class="section-heading">
-    <p class="eyebrow">LITTLE MOMENTS, BIG MEANING</p>
-    <h2>Our <span>Memory Gallery</span></h2>
-    <p>Your selected photos and videos will appear here after saving.</p>
-  </div>
-  <div class="memory-toolbar">
-    <span id="memoryCount">0 memories saved</span>
-    <a class="secondary-button" href="#add-memory">＋ Add a memory</a>
-  </div>
-  <div class="memory-grid" id="memoryGrid"></div>
-  <p class="empty-message" id="emptyMessage">Your gallery is waiting for its first beautiful memory. ♥</p>
-</section>
-
-<section class="section add-section" id="add-memory">
-  <div class="section-heading">
-    <p class="eyebrow">SAVE TODAY, REMEMBER FOREVER</p>
-    <h2>Add a <span>Beautiful Moment</span></h2>
-    <p>Select multiple photos or videos, preview them, and save your memory.</p>
-  </div>
-
-  <form class="memory-form" id="memoryForm">
-    <label for="memoryTitle">Memory title</label>
-    <input id="memoryTitle" maxlength="100" placeholder="Our special day..." required>
-
-    <label for="memoryDate">Date of memory</label>
-    <input id="memoryDate" type="date" required>
-
-    <label for="memoryNote">A little note (optional)</label>
-    <textarea id="memoryNote" rows="4" maxlength="1500" placeholder="What made this moment unforgettable?"></textarea>
-
-    <div class="upload-area">
-      <div class="heart">♡</div>
-      <strong>Select photos and videos from your device</strong>
-      <p>Choose one or multiple files below.</p>
-      <input id="memoryFiles" type="file" accept="image/*,video/*" multiple required>
+    <div class="eyes-caption">
+      <span class="eyes-heart">♥</span>
+      <p>A MOMENT MADE OF LOVE</p>
+      <div class="eyes-progress">
+        <span id="eyesProgress"></span>
+      </div>
     </div>
+  </section>
 
-    <p id="selectedFiles">No photos or videos selected yet.</p>
-    <div id="uploadPreview" class="upload-preview"></div>
+  <!-- Intro music: use only one element for each track -->
+  <audio id="introMusic" src="./intro.mp3" preload="auto"></audio>
+  <audio id="backgroundMusic" src="./romantic.mp3" loop preload="auto"></audio>
 
-    <button class="primary-button form-button" id="saveButton" type="submit">Save to our gallery ♥</button>
-    <p id="formStatus" role="status"></p>
-  </form>
-</section>
+  <!-- Main romantic website -->
+  <div id="website" class="hidden">
 
-<section class="love-letter" id="letter">
-  <div class="letter-heart">♥</div>
-  <p class="eyebrow">A NOTE FROM THE HEART</p>
-  <h2>To <span>Naresh</span></h2>
-  <p>Some moments pass, but the feelings they leave behind stay with us. May this little corner hold your happiest memories, one photo, one song, and one beautiful day at a time.</p>
-  <p class="signature">With love, always ♡</p>
-</section>
-</main>
+    <header class="topbar">
+      <a class="brand" href="#home">Our <span>♥</span> Story</a>
 
-<footer>MADE WITH <span>♥</span> FOR YOUR MOST BEAUTIFUL MEMORIES</footer>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#memories">Memories</a>
+        <a href="#add-memory">Add Memory</a>
+        <a href="#letter">Love Note</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="floating-hearts" id="floatingHearts"></div>
+
+        <div class="hero-content">
+          <p class="eyebrow">A LITTLE WORLD, MADE FOR TWO</p>
+
+          <h1>
+            Every love story<br>
+            is beautiful, <span>ours is magic.</span>
+          </h1>
+
+          <p class="hero-copy">
+            A little place for the smiles, the journeys, the ordinary days,
+            and the unforgettable moments that make a life together.
+          </p>
+
+          <p class="couple-name">With love, for <span>Naresh ♥</span></p>
+
+          <p class="song-trigger" id="songTrigger" role="button" tabindex="0">
+            ♡ Touch these words to hear our song ♡
+          </p>
+
+          <a class="primary-button" href="#memories">
+            Explore our memories <span>♡</span>
+          </a>
+        </div>
+
+        <div class="heart-scene">
+          <div class="heart-orbit"></div>
+          <div class="heart-orbit orbit-b"></div>
+          <div class="heart-3d">♥</div>
+          <p class="heart-caption">ALWAYS · AND FOREVER</p>
+        </div>
+
+        <div class="scroll-hint">SCROLL TO OUR STORY ↓</div>
+      </section>
+
+      <section class="section memories-section" id="memories">
+        <div class="section-heading">
+          <p class="eyebrow">LITTLE MOMENTS, BIG MEANING</p>
+          <h2>Our <span>Memory Gallery</span></h2>
+          <p>Every photo and video holds a story worth keeping.</p>
+        </div>
+
+        <div class="memory-toolbar">
+          <span id="memoryCount">0 memories saved</span>
+          <a class="secondary-button" href="#add-memory">＋ Add a memory</a>
+        </div>
+
+        <div class="memory-grid" id="memoryGrid"></div>
+
+        <p class="empty-message" id="emptyMessage">
+          Your gallery is waiting for its first beautiful memory. ♥
+        </p>
+      </section>
+
+      <section class="section add-section" id="add-memory">
+        <div class="section-heading">
+          <p class="eyebrow">SAVE TODAY, REMEMBER FOREVER</p>
+          <h2>Add a <span>Beautiful Moment</span></h2>
+          <p>Select multiple photos or videos and preview them before saving.</p>
+        </div>
+
+        <form class="memory-form" id="memoryForm">
+          <label for="memoryTitle">Memory title</label>
+          <input
+            id="memoryTitle"
+            type="text"
+            maxlength="100"
+            placeholder="Our special day..."
+            required
+          >
+
+          <label for="memoryDate">Date of memory</label>
+          <input id="memoryDate" type="date" required>
+
+          <label for="memoryNote">A little note (optional)</label>
+          <textarea
+            id="memoryNote"
+            rows="4"
+            maxlength="1500"
+            placeholder="What made this moment unforgettable?"
+          ></textarea>
+
+
+<!-- Upload and preview photos -->
+<div class="upload-area">
+  <h3>♥ Add Our Beautiful Memories ♥</h3>
+  <p>Select a photo and see it before saving.</p>
+
+  <label for="memoryFiles" class="primary-button upload-button">
+    📷 Choose Images
+  </label>
+
+  <input
+    type="file"
+    id="memoryFiles"
+    accept="image/jpeg,image/png,image/webp,image/gif"
+    multiple
+    required
+  >
 </div>
 
-<dialog class="viewer" id="viewer">
-  <button class="close-viewer" id="closeViewer" type="button" aria-label="Close">×</button>
-  <div id="viewerContent"></div>
-  <p id="viewerCaption"></p>
-</dialog>
+<p id="selectedFiles">No images selected yet.</p>
 
-<script>
-(() => {
-  const $ = id => document.getElementById(id);
+<!-- Actual photo previews -->
+<div id="uploadPreview" class="upload-preview"></div>
 
-  const intro = $("eyesIntro");
-  const eyesVideo = $("eyesVideo");
-  const progress = $("eyesProgress");
-  const website = $("website");
-  const introMusic = $("introMusic");
-  const backgroundMusic = $("backgroundMusic");
+          <!-- Selected images and videos appear here -->
+          <div id="uploadPreview" class="upload-preview"></div>
 
-  let introFinished = false;
-  let progressTimer;
+          <button class="primary-button form-button" type="submit">
+            Save to our gallery ♥
+          </button>
 
-  function finishIntro() {
-    if (introFinished) return;
-    introFinished = true;
-    clearInterval(progressTimer);
+          <p id="formStatus" role="status"></p>
+        </form>
+      </section>
 
-    intro.classList.add("hidden");
-    website.classList.remove("hidden");
+      <section class="love-letter" id="letter">
+        <span class="letter-heart">♥</span>
+        <p class="eyebrow">A NOTE FROM THE HEART</p>
+        <h2>To <span>Naresh</span></h2>
 
-    introMusic.pause();
-    introMusic.currentTime = 0;
+        <p>
+          Some moments pass, but the feelings they leave behind stay with us.
+          May this little corner hold your happiest memories, one photo,
+          one song, and one beautiful day at a time.
+        </p>
 
-    // Browsers may require a click before playing music.
-    backgroundMusic.play().catch(() => {});
-  }
+        <p class="signature">With love, always ♡</p>
+      </section>
+    </main>
 
-  // Keep the intro for 10 seconds even if the video is shorter.
-  let startTime = Date.now();
-  progressTimer = setInterval(() => {
-    const elapsed = Date.now() - startTime;
-    progress.style.width = Math.min(elapsed / 10000 * 100, 100) + "%";
-    if (elapsed >= 10000) finishIntro();
-  }, 50);
+    <footer>MADE WITH <span>♥</span> FOR YOUR MOST BEAUTIFUL MEMORIES</footer>
+  </div>
 
-  eyesVideo.addEventListener("error", () => {
-    $("eyesProgress").style.width = "100%";
-  });
+  <!-- Full-screen photo/video viewer -->
+  <dialog class="viewer" id="viewer">
+    <button class="close-viewer" id="closeViewer" type="button">×</button>
+    <div id="viewerContent"></div>
+    <p id="viewerCaption"></p>
+  </dialog>
 
-  // Tapping the song prompt starts the main website music.
-  function playMainMusic() {
-    backgroundMusic.play().catch(() => {});
-  }
-  $("songTrigger").addEventListener("click", playMainMusic);
-  $("songTrigger").addEventListener("keydown", event => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      playMainMusic();
-    }
-  });
-
-  // IndexedDB saves photo/video files in this browser.
-  const DB_NAME = "OurBeautifulStoryDB";
-  const STORE_NAME = "memories";
-  let db;
-
-  function openDatabase() {
-    return new Promise((resolve, reject) => {
-      if (!("indexedDB" in window)) {
-        reject(new Error("Your browser does not support local gallery storage."));
-        return;
-      }
-
-      const request = indexedDB.open(DB_NAME, 1);
-
-      request.onupgradeneeded = () => {
-        const database = request.result;
-        if (!database.objectStoreNames.contains(STORE_NAME)) {
-          database.createObjectStore(STORE_NAME, {
-            keyPath: "id",
-            autoIncrement: true
-          });
-        }
-      };
-
-      request.onsuccess = () => resolve(request.result);
-      request.onerror = () => reject(request.error);
-    });
-  }
-
-  function transactionStore(mode = "readonly") {
-    return db.transaction(STORE_NAME, mode).objectStore(STORE_NAME);
-  }
-
-  function getAllMemories() {
-    return new Promise((resolve, reject) => {
-      const request = transactionStore().getAll();
-      request.onsuccess = () => resolve(request.result);
-      request.onerror = () => reject(request.error);
-    });
-  }
-
-  function saveMemory(memory) {
-    return new Promise((resolve, reject) => {
-      const request = transactionStore("readwrite").add(memory);
-      request.onsuccess = () => resolve(request.result);
-      request.onerror = () => reject(request.error);
-    });
-  }
-
-  function deleteMemory(id) {
-    return new Promise((resolve, reject) => {
-      const request = transactionStore("readwrite").delete(id);
-      request.onsuccess = resolve;
-      request.onerror = () => reject(request.error);
-    });
-  }
-
-  // Keep object URLs alive while displayed.
-  let galleryUrls = [];
-  let previewUrls = [];
-
-  function clearUrls(urls) {
-    urls.forEach(url => URL.revokeObjectURL(url));
-    urls.length = 0;
-  }
-
-  function makeMedia(file, urls, onClick) {
-    const url = URL.createObjectURL(file);
-    urls.push(url);
-
-    const element = document.createElement(
-      file.type.startsWith("video/") ? "video" : "img"
-    );
-    element.src = url;
-
-    if (element.tagName === "VIDEO") {
-      element.controls = true;
-      element.preload = "metadata";
-      element.playsInline = true;
-    } else {
-      element.alt = file.name || "Memory photo";
-      element.loading = "lazy";
-    }
-
-    if (onClick) element.addEventListener("click", onClick);
-    return element;
-  }
-
-  const filesInput = $("memoryFiles");
-  const preview = $("uploadPreview");
-
-  filesInput.addEventListener("change", () => {
-    clearUrls(previewUrls);
-    preview.replaceChildren();
-
-    const files = Array.from(filesInput.files || []);
-    $("selectedFiles").textContent = files.length
-      ? files.length + " file(s) selected"
-      : "No photos or videos selected yet.";
-
-    for (const file of files) {
-      if (!file.type.startsWith("image/") &&
-          !file.type.startsWith("video/")) continue;
-
-      const item = document.createElement("div");
-      item.className = "preview-item";
-      item.appendChild(makeMedia(file, previewUrls));
-
-      const name = document.createElement("p");
-      name.textContent = file.name;
-      item.appendChild(name);
-      preview.appendChild(item);
-    }
-  });
-
-  function openViewer(file, title) {
-    const content = $("viewerContent");
-    content.replaceChildren();
-
-    const media = makeMedia(file, galleryUrls);
-    media.removeAttribute("loading");
-    content.appendChild(media);
-    $("viewerCaption").textContent = title;
-
-    const dialog = $("viewer");
-    if (typeof dialog.showModal === "function") dialog.showModal();
-    else alert("Please open this website in a modern browser to view the photo.");
-  }
-
-  $("closeViewer").addEventListener("click", () => $("viewer").close());
-
-  $("viewer").addEventListener("close", () => {
-    $("viewerContent").replaceChildren();
-    $("viewerCaption").textContent = "";
-    clearUrls(galleryUrls);
-    renderGallery();
-  });
-
-  async function renderGallery() {
-    clearUrls(galleryUrls);
-    const grid = $("memoryGrid");
-    grid.replaceChildren();
-
-    let memories;
-    try {
-      memories = await getAllMemories();
-    } catch (error) {
-      $("formStatus").textContent = "Could not read saved memories: " + error.message;
-      return;
-    }
-
-    $("memoryCount").textContent =
-      memories.length + (memories.length === 1 ? " memory saved" : " memories saved");
-    $("emptyMessage").classList.toggle("hidden", memories.length > 0);
-
-    for (const memory of memories.slice().reverse()) {
-      const card = document.createElement("article");
-      card.className = "memory-card";
-
-      const info = document.createElement("div");
-      info.className = "memory-info";
-
-      const title = document.createElement("h3");
-      title.textContent = memory.title;
-      info.appendChild(title);
-
-      const date = document.createElement("p");
-      date.className = "memory-date";
-      date.textContent = memory.date;
-      info.appendChild(date);
-
-      if (memory.note) {
-        const note = document.createElement("p");
-        note.textContent = memory.note;
-        info.appendChild(note);
-      }
-
-      const mediaRow = document.createElement("div");
-      mediaRow.className = "upload-preview";
-
-      memory.files.forEach(file => {
-        const item = document.createElement("div");
-        item.className = "preview-item";
-        const media = makeMedia(file, galleryUrls, () => openViewer(file, memory.title));
-        item.appendChild(media);
-        mediaRow.appendChild(item);
-      });
-
-      const actions = document.createElement("div");
-      actions.className = "memory-actions";
-
-      const deleteButton = document.createElement("button");
-      deleteButton.className = "small-button";
-      deleteButton.type = "button";
-      deleteButton.textContent = "Delete memory";
-      deleteButton.addEventListener("click", async () => {
-        if (!confirm("Delete this memory from this browser?")) return;
-        try {
-          await deleteMemory(memory.id);
-          await renderGallery();
-        } catch (error) {
-          alert("Could not delete this memory: " + error.message);
-        }
-      });
-
-      actions.appendChild(deleteButton);
-      info.appendChild(actions);
-      card.appendChild(mediaRow);
-      card.appendChild(info);
-      grid.appendChild(card);
-    }
-  }
-
-  $("memoryForm").addEventListener("submit", async event => {
-    event.preventDefault();
-
-    const files = Array.from(filesInput.files || []).filter(file =>
-      file.type.startsWith("image/") || file.type.startsWith("video/")
-    );
-
-    if (!files.length) {
-      $("formStatus").textContent = "Please select at least one photo or video.";
-      return;
-    }
-
-    $("saveButton").disabled = true;
-    $("formStatus").textContent = "Saving your memory...";
-
-    try {
-      await saveMemory({
-        title: $("memoryTitle").value.trim(),
-        date: $("memoryDate").value,
-        note: $("memoryNote").value.trim(),
-        files: files
-      });
-
-      $("memoryForm").reset();
-      clearUrls(previewUrls);
-      preview.replaceChildren();
-      $("selectedFiles").textContent = "No photos or videos selected yet.";
-      $("formStatus").textContent = "Your memory was saved! ♥";
-      await renderGallery();
-      $("memories").scrollIntoView({ behavior: "smooth" });
-    } catch (error) {
-      $("formStatus").textContent =
-        "Could not save. Your browser storage may be full. Try fewer or smaller files. Details: " +
-        error.message;
-    } finally {
-      $("saveButton").disabled = false;
-    }
-  });
-
-  openDatabase()
-    .then(database => {
-      db = database;
-      return renderGallery();
-    })
-    .catch(error => {
-      $("formStatus").textContent =
-        "Gallery storage could not start. Please use a modern browser. " + error.message;
-    });
-})();
-</script>
+  <script src="./script.js"></script>
 </body>
 </html>
+```
